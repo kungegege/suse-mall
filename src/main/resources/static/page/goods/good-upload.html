@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>suse-mall</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <link rel="stylesheet" href="../../upload/upload.css" media="all" >
+
+    <link rel="stylesheet" href="../../js/lay-module/step-lay/step.css" media="all">
+    <script src="../../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <link href="../../cupload/cupload.css" type="text/css" rel="stylesheet"/>
+    <script src="../../cupload/cupload.js"></script>
+    <style>
+        .p {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background: #e9e9e9;
+            padding: 10px;
+        }
+        .test-box {
+            overflow: hidden;
+        }
+        .test {
+            float: left;
+            margin-right: 10px;
+            padding: 8px;
+            border-radius: 4px;
+            background-color: blue;
+            text-align: center;
+            color: #fff;
+            cursor: pointer;
+        }
+        #stepForm{
+            height: 600px!important;
+        }
+        .layui-form-item{
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+
+    <div class="layuimini-main">
+        <div class="layui-fluid">
+            <div class="layui-card">
+                <div class="layui-card-body" style="padding-top: 40px;">
+                    <div class="layui-carousel" id="stepForm" lay-filter="stepForm" style="margin: 0 auto;height: 600px">
+                        <div carousel-item style="overflow-y: auto;height: 520px">
+                            <div>
+                                <form class="layui-form" style="margin: 0 auto;width: 600px;padding-top: 40px;">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">商品名称:</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" value=""  name="prodName" placeholder="请填写商品名称" class="layui-input" required lay-verify="required" />
+                                        </div>
+                                    </div>
+
+                                    <div class="" style="margin-bottom: 15px;display: flex;justify-content: space-between;width: 100%;">
+                                       <div class="layui-inline">
+                                           <label class="layui-form-label">分类:</label>
+                                           <div class="layui-input-inline">
+                                               <!--分类ID-->
+                                               <input  name="categoryId" type="hidden" id="categoryId"/>
+                                               <input type="text" name="categoryName" id="goodTypeSelect" placeholder="请选择分类" style="width: 160px;" readonly required lay-verify="required" autocomplete="off"  value=""  class="layui-input" ts-selected="">
+                                           </div>
+                                       </div>
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">价格:</label>
+                                            <div class="layui-input-inline">
+                                                <input type="number"  name="price" placeholder="请填写入款金额"  style="width: 160px;" required lay-verify="required" value="" class="layui-input" lay-verify="number" >
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">商品状态:</label>
+                                        <div class="layui-input-block">
+                                            <select lay-verify="required" name="status" >
+                                                <option value="1" selected>上架</option>
+                                                <option value="0">下架</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">地点:</label>
+                                        <div class="layui-input-block">
+                                            <!--TODO 获取数据库中的数据 table: tz_addr-->
+                                            <select lay-verify="required" name="address">
+                                                <option value="1" selected>宜宾校区-白酒学院</option>
+                                                <option value="2" >自贡-汇南校区</option>
+                                                <option value="2" >自贡-汇北校区</option>
+                                                <option value="4" >自贡-李白河校区</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">库存:</label>
+                                        <div class="layui-input-block">
+                                            <input type="number" name="totalStocks" placeholder="请填写库存额" value="" class="layui-input" required lay-verify="number">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">备注:</label>
+                                        <div class="layui-input-block">
+                                            <input placeholder="备注消息" name="remake" value="" class="layui-input"/>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">商品简介:</label>
+                                        <div class="layui-input-block">
+                                            <textarea placeholder="商品简介内容" name="brief" value="" cols="2" class="layui-textarea"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" lay-submit lay-filter="formStep">下一步</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div>
+                                <form class="layui-form" style="margin: 0 auto;max-width: 460px;padding-top: 40px;">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">商品属性</label>
+                                        <div class="layui-input-block">
+                                            <table id="propertiesTable" lay-filter="barEvent"></table>
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">轮播上传:</label>
+                                        <div class="layui-input-block">
+                                            <div class="cupload" id="cupload_lb"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">详细图片</label>
+                                        <div class="cupload" id="cupload_detail"></div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button type="button" class="layui-btn layui-btn-primary pre">上一步</button>
+                                            <button class="layui-btn" lay-submit lay-filter="formStep2">确认</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div>
+                                <div style="text-align: center;margin-top: 90px;">
+                                    <i class="layui-icon layui-circle"
+                                       style="color: white;font-size:30px;font-weight:bold;background: #52C41;padding: 20px;line-height: 80px;">&#xe605;</i>
+                                    <div style="font-size: 24px;color: #333;font-weight: 500;margin-top: 30px;">
+                                        发布成功
+                                    </div>
+                                    <div style="font-size: 14px;color: #666;margin-top: 20px;">等待管理员审核、预计需要两小时</div>
+                                </div>
+                                <div style="text-align: center;margin-top: 50px;">
+                                    <button class="layui-btn next">再发布一个商品</button>
+                                    <button class="layui-btn layui-btn-primary">查看该商品</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script id="globalOptBar"  type="text/html">
+    <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add" type="button"> 添加 </button>
+    <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="del"  type="button"> 删除 </button>
+</script>
+
+<script src="../../lib/jq-module/zyupload/zyupload-1.0.0.min.js" charset="utf-8"></script>
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+
+<script>
+    let cuploadLB = new Cupload('#cupload_lb', {
+        height: '82px',
+        width: '82px',
+        exceedLimit: ()=>{
+            layer.msg("超过了图片上限")
+        },
+        exceedFileSizeLimit: (file, limit)=>{
+            console.log(file.name,"超过了文件大小")
+            layer.msg(`${file.name} 太大了, 最大支持${limit}kb`)
+        },
+        // defaultImgs: [''],
+        tags:['商品封面'],
+        enableDelete: true,
+        enableResetOrder: true,
+        limit: 4,
+        maxFileSize: 1024,
+        url:'http://127.0.0.1:8080/upload/batch'
+    });
+
+    let cuploadDetail = new Cupload('#cupload_detail', {
+        height: '82px',
+        width: '82px',
+        exceedLimit: ()=>{
+            layer.msg("超过了图片上限")
+        },
+        exceedFileSizeLimit: (file, limit)=>{
+            layer.msg(`${file.name} 太大了, 最大支持${limit}kb`)
+        },
+        // defaultImgs: [''],
+        tags:null,
+        enableDelete: true,
+        enableResetOrder: true,
+        limit: 100,
+        maxFileSize: 1024,
+        url:'http://127.0.0.1:8080/upload/batch'
+    });
+
+    function getUUid(){
+        function S4() {
+            return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+        }
+        return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+    }
+
+
+    layui.use(['form', 'step', 'upload', 'layer','tableSelect','table'], function () {
+        let $ = layui.$,
+            form = layui.form,
+            step = layui.step,
+            layer = layui.layer,
+            table = layui.table,
+            upload = layui.upload,
+            tableSelect = layui.tableSelect;
+
+
+        // 商品类型列表 TODO 待升级为树形table
+        tableSelect.render({
+            elem: '#goodTypeSelect',
+            // 搜索输入框的name值 默认keyword
+            searchKey: 'typeName',
+            // 表格的唯一建值，非常重要，影响到选中状态 必填
+            checkedKey: 'categoryId',
+            // 搜索输入框的提示文字 默认关键词搜索
+            searchPlaceholder: '请输入商品类型',
+            //定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
+            table: {
+                url: 'http://127.0.0.1:8080/category/all',
+                // 开启分页
+                page: true,
+                request:{
+                    //页码的参数名称，默认：page
+                    pageName: 'page',
+                    //每页数据量的参数名，默认：limit
+                    limitName: 'limit'
+                },
+                parseData: function (res) {
+                    return {
+                        "code": res.code,
+                        "msg": res.msg,
+                        "count": res.data.total,
+                        "data": res.data.records
+                    };
+                },
+                cols: [[
+                    { type: 'radio' },
+                    { field: 'categoryId', title: 'ID', width: 100 },
+                    { field: 'categoryName', title: '分类名称', width: 100 }
+                ]]
+            },
+            done: function (elem, data) {
+                let NEWJSON = [], ids = [];
+                layui.each(data.data, function (index, item) {
+                    NEWJSON.push(item.categoryName)
+                    ids.push(item.categoryId)
+                })
+                console.log(data);
+                // categoryId
+                elem.val(NEWJSON.join(","))
+                $("#categoryId").val(ids.join(","))
+            }
+        })
+
+        step.render({
+            elem: '#stepForm',
+            filter: 'stepForm',
+            width: '100%', //设置容器宽度
+            stepWidth: '750px',
+            height: '500px',
+            stepItems: [{
+                title: '填写入商品基本信息'
+            }, {
+                title: '补录额外信息'
+            }, {
+                title: '完成'
+            }]
+        });
+
+        //绑定原始文件域
+        upload.render({
+            elem: '#test20',
+            accept: 'images',
+            multiple: false,
+            url: 'http://127.0.0.1:8080/upload/', //此处配置你自己的上传接口即可
+            done: function(res){
+                let uri = res.data;
+            }
+        });
+
+        // 图片上传
+        upload.render({
+            elem: '#uploadImg',
+            url: 'http://127.0.0.1:8080/upload/',
+            accept: 'images',
+            // 是否自动上传，true就是选择完文件之后自动上传
+            auto: true,
+            //绑定开始上传按钮，如果自动上传则不需要这个按钮
+            // bindAction: '#uploadBegin',
+            size: 2 * 1024, // 2M
+            // 单图片上传
+            multiple: false,
+            // 是否接受拖拽的文件上传
+            drag: false,
+            acceptMime: 'image/*',
+            done(res, index, upload) {
+                // res  服务端响应信息
+                // index 当前文件的索引
+                // upload 重新上传的方法，一般在文件上传失败后使用
+                console.log(res, upload, index);
+                let uri = res.data;
+                $("#preMainImg").attr("src",uri);
+                $("#mainImgInp").val(uri)
+            }
+        })
+
+        let resData = {};
+        form.on('submit(formStep)', function (data) {
+            console.log("1---", data, data.field);
+            resData = {...resData, ...data.field};
+            step.next('#stepForm');
+            return false;
+        });
+
+        // 发布商品
+        form.on('submit(formStep2)', function (data) {
+            console.log('cuploadLB.getUrls()', cuploadLB.getUrls());
+            if(!cuploadLB.getUrls() || cuploadLB.getUrls().length<1){
+                layer.msg("轮播图不能为空",{icon:2})
+            }else if(!cuploadDetail.getUrls() || cuploadDetail.getUrls().length<1){
+                layer.msg("详细图不能为空",{icon:2})
+            }else {
+                resData = {...resData, ...data.field};
+                resData['imgs'] = cuploadDetail.getUrls().join(",")
+                resData['pic'] = cuploadLB.getUrls().join(",")
+
+                let propertiesData = table.cache.propertiesTable, propertiesStr = [];
+                for (let i = 0; i < propertiesData.length; i++) {
+                    propertiesStr.push(JSON.stringify(propertiesData[i]));
+                }
+                resData['attr'] = propertiesStr.join('#')
+
+                // 发布商品
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json;charset=UTF-8',
+                    url: "/prod/add",
+                    data: JSON.stringify(resData),
+                    success(res) {
+                      if(res.code===0){
+                          // step.next('#stepForm');
+                          setTimeout(()=>{
+                              layer.msg('发表成功',{icon:1});
+                              let index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                              parent.layer.close(index);
+                          },500)
+                      }else{
+                          layer.msg(res.msg,{icon:2});
+                      }
+                    }
+                })
+            }
+            return false;
+        });
+
+        $('.pre').click(function () {
+            step.pre('#stepForm');
+        });
+
+        $('.next').click(function () {
+            step.next('#stepForm');
+        });
+
+        // 工具条事件
+        table.on('toolbar(barEvent)', function(obj) {
+            let selectedData = table.checkStatus(obj.config.id).data;
+            let originalData = table.cache.propertiesTable;
+            if (obj.event === 'del') {
+                console.log("删除:", selectedData)
+                // 删除节点 ids
+                let ids = selectedData.map(it=>it.id);
+                console.log('del ids', ids)
+                console.log('originalData', originalData)
+
+                let newData = originalData.filter(it=>ids.indexOf(it.id)===-1);
+
+                table.reload('propertiesTable',{
+                    data: newData
+                })
+            } else if (obj.event === 'add') {
+                let data = originalData
+                console.log('data： ',data)
+                data.push({id: getUUid(),key:'-',value:'-'});
+                table.reload('propertiesTable', {
+                    data: data
+                })
+            }
+        });
+        // 属性表格
+        let propertyTable = table.render({
+            elem: '#propertiesTable',
+            toolbar: '#globalOptBar',
+            defaultToolbar: [],
+            cols: [[
+                {checkbox: true},
+                {field: 'id', title:'ID', hide:true,width: 80},
+                {field: 'key', title:'属性名', edit: true, width: 80},
+                {field: 'value', title:'属性值', edit: true,width: 218}
+            ]],
+            data:[]
+        })
+    });
+</script>
+
+<script src="../../upload/upload.js" type="text/javascript"></script>
+<script>
+    // 必须，固定变量名
+    var gbOption = null;
+
+    // 固定写法 这个就是上传能拿到的 files的集合，
+    var filesArr=[];
+
+    // 必须，固定变量名，值可自定义，就是input的 class自定义后 需要在这重新声明
+    var fileClass = 'input-file';
+
+    // 可自定义，图片上传功能 时必须给的东西，传递到imgsUpload
+    var imgObj2 = [];
+
+    var urls = [];
+
+    // 可自定义，上传功能时的  工具人，自定义然后传递到imgsUpload 就行
+    var upoad;
+
+    // 最多上传3张
+    var imgMaxNum=3;
+
+    //反显 一个对象，里面包含了 当前图片预览步骤，和图片数组。 这个最好固定，你要改就一起要改upload.js里面的
+    var ispre;
+
+    // setTimeout变成异步加载，不然提示有些函数找不到，可自己优化
+    setTimeout(function () {
+
+        // 上传时调用
+        imgsUpload(imgObj2,upoad,urls,imgMaxNum);
+
+        // 反显, 模拟反显的数据来源，真实是从服务器获取数据
+        var imgObj = ['./t1.png', './t2.png', './t3.png']
+
+    }, 300)
+
+    function gogoole() {
+        if(filesArr.length>0) alert('得到files的集合');
+        console.log(filesArr)
+        var xmlHttp;
+        if(window.XMLHttpRequest){
+            xmlHttp = new XMLHttpRequest();
+        }else{
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        for(let i=0;i<filesArr.length;i++){
+            var formData = new FormData();
+            formData.append("file",filesArr[i])
+            xmlHttp.open("post","http://127.0.1:8080/upload/",true)
+            xmlHttp.setRequestHeader('traditional','true');
+            xmlHttp.send(formData)
+            xmlHttp.onreadystatechange=function(){
+                if (xmlHttp.readyState==4 && xmlHttp.status==200){
+                    console.log(xmlHttp.responseText);
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

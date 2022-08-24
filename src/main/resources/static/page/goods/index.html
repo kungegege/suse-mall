@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>suse-mall</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+</head>
+<body>
+    <div class="layuimini-container">
+        <div class="layuimini-main">
+            <fieldset class="table-search-fieldset">
+                <legend>搜索信息</legend>
+                <div style="margin: 10px 10px 10px 10px">
+                    <form class="layui-form layui-form-pane" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">商品名称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="prodName" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">卖家</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="userName" id="userSelect" autocomplete="off" value="" class="layui-input" ts-selected="">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">商品类型</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="categoryName" id="goodTypeSelect" autocomplete="off"  value="" class="layui-input" ts-selected="">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">商品状态</label>
+                                <div class="layui-input-inline">
+                                        <select name="status" lay-verify="">
+                                            <option value="1">上架</option>
+                                            <option value="0">下架</option>
+                                        </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </fieldset>
+            <script type="text/html" id="toolbarDemo">
+                <div class="layui-btn-container">
+                    <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 添加 </button>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除 </button>
+                </div>
+            </script>
+            <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+            <script type="text/html" id="currentTableBar">
+                <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+            </script>
+        </div>
+    </div>
+
+    <script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+    <script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+
+    <script>
+        layui.use(['form', 'table','tableSelect'], function () {
+            let $ = layui.jquery,
+                form = layui.form,
+                table = layui.table,
+                tableSelect = layui.tableSelect;
+
+        let goodTable=table.render({
+                elem: '#currentTableId',
+                url: '/prod/page',
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [[
+                    {type: "checkbox", width: 50},
+                    {field: 'prodId', width: 80, title: 'ID'},
+                    {field: 'prodName', width: 220, title: '商品名称'},
+                    {field: 'brief', title: '商品简介'},
+                    // {field: 'pic', width: 240, title: '商品主图', templet: (d) => `<img src="${d.pic}" alt="">`},
+                    {field: 'soldNum', title: '销量', width: 80},
+                    {
+                        field: 'status', width: 80, title: '状态', sort: true, templet: (d) => {
+                            if (d.status===1){
+                                return  `<span class="layui-badge layui-bg-green">正常</span>`
+                            }
+                            return  `<span class="layui-badge layui-bg-orange">下架</span>`
+                        }
+                    },
+                    {field: 'totalStocks', width: 80, title: '库存', sort: true},
+                    {title: '操作', width: 120, toolbar: '#currentTableBar', align: "center"}
+                ]],
+                parseData: function (res) {
+                    return {
+                        "code": res.code,
+                        "msg": res.msg,
+                        "count": res.data.total,
+                        "data": res.data.records
+                    };
+                },
+                page: true,
+                skin: 'line'
+            });
+
+            // 监听搜索操作
+            form.on('submit(data-search-btn)', function (data) {
+                let result = JSON.stringify(data.field);
+
+                //执行搜索重载
+                table.reload('currentTableId', {
+                    page: {
+                        curr: 1
+                    },
+                    where: data.field
+                }, 'data');
+
+                return false;
+            });
+
+            // 卖家列表
+            tableSelect.render({
+                elem: '#userSelect',
+                // 搜索输入框的name值 默认keyword
+                searchKey: 'name',
+                // 表格的唯一建值，非常重要，影响到选中状态 必填
+                checkedKey: 'userId',
+                // 搜索输入框的提示文字 默认关键词搜索
+                searchPlaceholder: '请输入卖家的用户名',
+                //定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
+                table: {
+                    url: 'http://127.0.0.1:8080/user/all',
+                    // 开启分页
+                    page: true,
+                    request:{
+                        //页码的参数名称，默认：page
+                        pageName: 'currPage',
+                        //每页数据量的参数名，默认：limit
+                        limitName: 'size'
+                    },
+                    parseData: function (res) {
+                        return {
+                            "code": res.code,
+                            "msg": res.msg,
+                            "count": res.data.total,
+                            "data": res.data.records
+                        };
+                    },
+                    cols: [[
+                        { type: 'radio' },
+                        { field: 'userId', title: 'ID', width: 150 },
+                        { field: 'nickName', title: '用户名', width: 300 },
+                        { field: 'sex', title: '性别', width: 50 }
+                    ]]
+                },
+                done: function (elem, data) {
+                    let NEWJSON = []
+                    layui.each(data.data, function (index, item) {
+                        NEWJSON.push(item.nickName)
+                    })
+                    elem.val(NEWJSON.join(","))
+                }
+            })
+
+            // 商品类型列表 TODO 待升级为树形table
+            tableSelect.render({
+                elem: '#goodTypeSelect',
+                // 搜索输入框的name值 默认keyword
+                searchKey: 'typeName',
+                // 表格的唯一建值，非常重要，影响到选中状态 必填
+                checkedKey: 'categoryId',
+                // 搜索输入框的提示文字 默认关键词搜索
+                searchPlaceholder: '请输入商品类型',
+                //定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
+                table: {
+                    url: 'http://127.0.0.1:8080/category/all',
+                    // 开启分页
+                    page: true,
+                    request:{
+                        //页码的参数名称，默认：page
+                        pageName: 'page',
+                        //每页数据量的参数名，默认：limit
+                        limitName: 'limit'
+                    },
+                    parseData: function (res) {
+                        return {
+                            "code": res.code,
+                            "msg": res.msg,
+                            "count": res.data.total,
+                            "data": res.data.records
+                        };
+                    },
+                    cols: [[
+                        { type: 'radio' },
+                        { field: 'categoryId', title: 'ID', width: 150 },
+                        { field: 'categoryName', title: '分类名称', width: 300 }
+                    ]]
+                },
+                done: function (elem, data) {
+                    let NEWJSON = []
+                    layui.each(data.data, function (index, item) {
+                        NEWJSON.push(item.categoryName)
+                    })
+                    elem.val(NEWJSON.join(","))
+                }
+            })
+            /**
+             * toolbar监听事件
+             */
+            table.on('toolbar(currentTableFilter)', function (obj) {
+                if (obj.event === 'add') {  // 监听添加操作
+                    let index = layer.open({
+                        title: '添加商品',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin:true,
+                        shadeClose: true,
+                        area: ['100%', '100%'],
+                        content: './good-upload.html',
+                        end: ()=>{
+                            // 重置表格数据
+                            console.log('reload data')
+                            table.reload('currentTableId', {
+                                url: 'http://127.0.0.1:8080/prod/page'
+                            });
+                        }
+                    });
+                    $(window).on("resize", function () {
+                        layer.full(index);
+                    });
+                } else if (obj.event === 'delete') {  // 监听删除操作
+                    let checkStatus = table.checkStatus('currentTableId')
+                        , data = checkStatus.data;
+                    let ids = data.map(it=>it.prodId)
+                    console.log("ids", ids);
+                    $.ajax({
+                        type: 'get',
+                        url: 'http://127.0.0.1:8080/prod/del/batch',
+                        data: {"ids": ids},
+                        traditional: true,
+                        success(res){
+                            if (res.code === 0) {
+                                layer.msg('删除成功', {icon: 1});
+                                table.reload('currentTableId', {
+                                    page: {
+                                        curr: 1
+                                    },
+                                    where: data.field
+                                }, 'data');
+
+                            }
+                        }
+                    });
+                }
+            });
+
+            //监听表格复选框选择
+            table.on('checkbox(currentTableFilter)', function (obj) {
+                console.log(obj)
+            });
+
+            table.on('tool(currentTableFilter)', function (obj) {
+                let data = obj.data;
+                if (obj.event === 'edit') {
+                    let index = layer.open({
+                        title: '编辑商品',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin:true,
+                        shadeClose: true,
+                        area: ['100%', '100%'],
+                        content: './edit.html?id=' + data.prodId,
+                        end: ()=>{
+                            // 重置表格数据
+                            console.log('重置表格数据...')
+                            table.reload('currentTableId', {
+                                url: 'http://127.0.0.1:8080/prod/page'
+                            });
+                        }
+                    });
+                    $(window).on("resize", function () {
+                        layer.full(index);
+                    });
+                    return false;
+                } else if (obj.event === 'delete') {
+                    layer.confirm('真的删除行么', function (index) {
+                        console.log(obj.data.prodId)
+                        $.ajax({
+                            type: 'get',
+                            url: 'http://127.0.0.1:8080/prod/del/batch',
+                            data: {"ids": [obj.data.prodId]},
+                            traditional: true,
+                            success(res){
+                                console.log(res)
+                                layer.msg('删除成功', {icon: 1});
+                                if (res.code === 0) {
+                                    table.reload('currentTableId', {
+                                        page: {
+                                            curr: 1
+                                        },
+                                        where: data.field
+                                    }, 'data');
+
+                                }
+                            }
+                        });
+
+                        layer.close(index);
+                    });
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>

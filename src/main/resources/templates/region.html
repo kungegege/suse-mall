@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>region</title>
+</head>
+<body>
+
+    <button onclick="console.log(getPosition());">region</button>
+
+    <script crossorigin="anonymous"
+            integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+            src="http://lib.baomitu.com/jquery/3.6.0/jquery.js"></script>
+
+    <script>
+
+         function getPosition() {
+            let  key = '199IhK9EoiyH7EvZT1DFlxOHGORIZBBF';
+            //浏览器H5定位
+            navigator.geolocation.getCurrentPosition(function (position) {
+                let latitude = position.coords.latitude
+                let longitude = position.coords.longitude
+                let data = {latitude, longitude};
+                console.log(data)
+                return data;
+            }, function (e){
+                console.error(e)
+            })
+
+            // 百度APi定位
+            let url = `https://api.map.baidu.com/location/ip?ak=${key}&coor=bd09ll&callback=?`;
+            $.getJSON(url,(res)=>{
+                let data= {
+                    latitude: res.content.point.y,
+                    longitude: res.content.point.x
+                }
+                console.log(data)
+                return data;
+            })
+        }
+    </script>
+</body>
+</html>

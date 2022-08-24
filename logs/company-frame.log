@@ -1,0 +1,271 @@
+2022-08-24 16:50:15.853  INFO 19924 --- [restartedMain] com.frame.CompanyFrameApplication        : Starting CompanyFrameApplication on LAPTOP-3AVH4GD2 with PID 19924 (started by HP in F:\桌面\mall-frame)
+2022-08-24 16:50:15.862  INFO 19924 --- [restartedMain] com.frame.CompanyFrameApplication        : No active profile set, falling back to default profiles: default
+2022-08-24 16:50:15.927  INFO 19924 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 16:50:15.927  INFO 19924 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 16:50:17.248  INFO 19924 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-08-24 16:50:17.251  INFO 19924 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-08-24 16:50:17.315  INFO 19924 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33ms. Found 0 repository interfaces.
+2022-08-24 16:50:17.751  INFO 19924 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4b08d91e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-08-24 16:50:18.378  INFO 19924 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-08-24 16:50:18.395  INFO 19924 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-08-24 16:50:18.396  INFO 19924 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2022-08-24 16:50:18.485  INFO 19924 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-08-24 16:50:18.485  INFO 19924 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2557 ms
+2022-08-24 16:50:18.771  INFO 19924 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-08-24 16:50:21.443  INFO 19924 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-08-24 16:50:25.070  INFO 19924 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'TaskExecutorPool'
+2022-08-24 16:50:25.173  INFO 19924 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2022-08-24 16:50:25.178  INFO 19924 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2022-08-24 16:50:25.186  INFO 19924 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2022-08-24 16:50:25.218  INFO 19924 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2022-08-24 16:50:25.319  INFO 19924 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2022-08-24 16:50:25.449  INFO 19924 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-08-24 16:50:25.628  INFO 19924 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-08-24 16:50:25.980  INFO 19924 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2022-08-24 16:50:25.999  INFO 19924 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2022-08-24 16:50:26.036  INFO 19924 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2022-08-24 16:50:26.129  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminLoginUsingGET_1
+2022-08-24 16:50:26.131  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_1
+2022-08-24 16:50:26.132  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_2
+2022-08-24 16:50:26.132  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_3
+2022-08-24 16:50:26.133  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_4
+2022-08-24 16:50:26.163  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateStatusUsingGET_1
+2022-08-24 16:50:26.167  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteBatchUsingGET_1
+2022-08-24 16:50:26.187  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryCategoryByPageUsingGET_1
+2022-08-24 16:50:26.190  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: saveUsingPOST_1
+2022-08-24 16:50:26.191  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateByIdUsingPOST_1
+2022-08-24 16:50:26.196  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateMsgStatusUsingGET_1
+2022-08-24 16:50:26.201  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryUsingGET_1
+2022-08-24 16:50:26.215  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryUsingGET_2
+2022-08-24 16:50:26.226  WARN 19924 --- [restartedMain] s.d.s.w.r.p.ParameterDataTypeReader      : Trying to infer dataType java.util.List<org.springframework.web.multipart.MultipartFile>
+2022-08-24 16:50:26.244  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addProdUsingGET_1
+2022-08-24 16:50:26.256  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getProductionsUsingGET_1
+2022-08-24 16:50:26.261  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateByIdUsingPOST_2
+2022-08-24 16:50:26.275  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getProductionsUsingGET_2
+2022-08-24 16:50:26.277  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getUserInfoUsingGET_1
+2022-08-24 16:50:26.284  INFO 19924 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateByIdUsingPOST_3
+2022-08-24 16:50:26.298  INFO 19924 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2022-08-24 16:50:26.298  INFO 19924 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2022-08-24 16:50:26.298  INFO 19924 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2022-08-24 16:50:26.322  INFO 19924 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-08-24 16:50:26.324  INFO 19924 --- [restartedMain] com.frame.CompanyFrameApplication        : Started CompanyFrameApplication in 11.048 seconds (JVM running for 13.021)
+2022-08-24 16:51:25.217  INFO 19924 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2022-08-24 17:39:49.767  INFO 17252 --- [restartedMain] com.frame.CompanyFrameApplication        : Starting CompanyFrameApplication on LAPTOP-3AVH4GD2 with PID 17252 (started by HP in F:\桌面\mall-frame)
+2022-08-24 17:39:49.779  INFO 17252 --- [restartedMain] com.frame.CompanyFrameApplication        : No active profile set, falling back to default profiles: default
+2022-08-24 17:39:49.824  INFO 17252 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 17:39:49.824  INFO 17252 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 17:39:50.824  INFO 17252 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-08-24 17:39:50.826  INFO 17252 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-08-24 17:39:50.858  INFO 17252 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23ms. Found 0 repository interfaces.
+2022-08-24 17:39:51.183  INFO 17252 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$275b7df3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-08-24 17:39:51.733  INFO 17252 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-08-24 17:39:51.754  INFO 17252 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-08-24 17:39:51.755  INFO 17252 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2022-08-24 17:39:51.849  INFO 17252 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-08-24 17:39:51.849  INFO 17252 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2025 ms
+2022-08-24 17:39:52.229  INFO 17252 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-08-24 17:40:14.469  INFO 17252 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-08-24 17:40:17.399  INFO 17252 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'TaskExecutorPool'
+2022-08-24 17:40:17.474  INFO 17252 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2022-08-24 17:40:17.478  INFO 17252 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2022-08-24 17:40:17.485  INFO 17252 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2022-08-24 17:40:17.513  INFO 17252 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2022-08-24 17:40:17.591  INFO 17252 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2022-08-24 17:40:17.728  INFO 17252 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-08-24 17:40:17.835  INFO 17252 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-08-24 17:40:18.143  INFO 17252 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2022-08-24 17:40:18.156  INFO 17252 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2022-08-24 17:40:18.178  INFO 17252 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2022-08-24 17:40:18.265  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminLoginUsingGET_1
+2022-08-24 17:40:18.267  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_1
+2022-08-24 17:40:18.268  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_2
+2022-08-24 17:40:18.269  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_3
+2022-08-24 17:40:18.270  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_4
+2022-08-24 17:40:18.301  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateStatusUsingGET_1
+2022-08-24 17:40:18.304  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteBatchUsingGET_1
+2022-08-24 17:40:18.328  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryCategoryByPageUsingGET_1
+2022-08-24 17:40:18.332  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: saveUsingPOST_1
+2022-08-24 17:40:18.334  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateByIdUsingPOST_1
+2022-08-24 17:40:18.341  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateMsgStatusUsingGET_1
+2022-08-24 17:40:18.346  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryUsingGET_1
+2022-08-24 17:40:18.365  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryUsingGET_2
+2022-08-24 17:40:18.386  WARN 17252 --- [restartedMain] s.d.s.w.r.p.ParameterDataTypeReader      : Trying to infer dataType java.util.List<org.springframework.web.multipart.MultipartFile>
+2022-08-24 17:40:18.411  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addProdUsingGET_1
+2022-08-24 17:40:18.426  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getProductionsUsingGET_1
+2022-08-24 17:40:18.432  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateByIdUsingPOST_2
+2022-08-24 17:40:18.452  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getProductionsUsingGET_2
+2022-08-24 17:40:18.455  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getUserInfoUsingGET_1
+2022-08-24 17:40:18.468  INFO 17252 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateByIdUsingPOST_3
+2022-08-24 17:40:18.485  INFO 17252 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2022-08-24 17:40:18.485  INFO 17252 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2022-08-24 17:40:18.485  INFO 17252 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2022-08-24 17:40:18.690  INFO 17252 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-08-24 17:40:18.693  INFO 17252 --- [restartedMain] com.frame.CompanyFrameApplication        : Started CompanyFrameApplication in 29.427 seconds (JVM running for 31.342)
+2022-08-24 17:41:17.521  INFO 17252 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2022-08-24 18:03:40.030  INFO 4652 --- [restartedMain] com.frame.CompanyFrameApplication        : Starting CompanyFrameApplication on LAPTOP-3AVH4GD2 with PID 4652 (started by HP in F:\桌面\mall-frame)
+2022-08-24 18:03:40.034  INFO 4652 --- [restartedMain] com.frame.CompanyFrameApplication        : No active profile set, falling back to default profiles: default
+2022-08-24 18:03:40.097  INFO 4652 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 18:03:40.097  INFO 4652 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 18:03:41.242  INFO 4652 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-08-24 18:03:41.244  INFO 4652 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-08-24 18:03:41.287  INFO 4652 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 32ms. Found 0 repository interfaces.
+2022-08-24 18:03:41.609  INFO 4652 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$42e1202] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-08-24 18:03:42.138  INFO 4652 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-08-24 18:03:42.159  INFO 4652 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-08-24 18:03:42.159  INFO 4652 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2022-08-24 18:03:42.248  INFO 4652 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-08-24 18:03:42.248  INFO 4652 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2151 ms
+2022-08-24 18:03:42.558  INFO 4652 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-08-24 18:03:42.781  INFO 4652 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-08-24 18:03:45.800  INFO 4652 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'TaskExecutorPool'
+2022-08-24 18:03:45.874  INFO 4652 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2022-08-24 18:03:45.879  INFO 4652 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2022-08-24 18:03:45.886  INFO 4652 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2022-08-24 18:03:45.918  INFO 4652 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2022-08-24 18:03:45.998  INFO 4652 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2022-08-24 18:03:46.131  INFO 4652 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-08-24 18:03:46.253  INFO 4652 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-08-24 18:03:46.580  INFO 4652 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2022-08-24 18:03:46.595  INFO 4652 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2022-08-24 18:03:46.621  INFO 4652 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2022-08-24 18:03:46.718  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminLoginUsingGET_1
+2022-08-24 18:03:46.720  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_1
+2022-08-24 18:03:46.721  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_2
+2022-08-24 18:03:46.722  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_3
+2022-08-24 18:03:46.723  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_4
+2022-08-24 18:03:46.759  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateStatusUsingGET_1
+2022-08-24 18:03:46.762  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteBatchUsingGET_1
+2022-08-24 18:03:46.786  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryCategoryByPageUsingGET_1
+2022-08-24 18:03:46.788  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: saveUsingPOST_1
+2022-08-24 18:03:46.789  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateByIdUsingPOST_1
+2022-08-24 18:03:46.795  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateMsgStatusUsingGET_1
+2022-08-24 18:03:46.799  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryUsingGET_1
+2022-08-24 18:03:46.813  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryUsingGET_2
+2022-08-24 18:03:46.825  WARN 4652 --- [restartedMain] s.d.s.w.r.p.ParameterDataTypeReader      : Trying to infer dataType java.util.List<org.springframework.web.multipart.MultipartFile>
+2022-08-24 18:03:46.844  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addProdUsingGET_1
+2022-08-24 18:03:46.856  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getProductionsUsingGET_1
+2022-08-24 18:03:46.860  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateByIdUsingPOST_2
+2022-08-24 18:03:46.887  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getProductionsUsingGET_2
+2022-08-24 18:03:46.888  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getUserInfoUsingGET_1
+2022-08-24 18:03:46.894  INFO 4652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateByIdUsingPOST_3
+2022-08-24 18:03:46.908  INFO 4652 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2022-08-24 18:03:46.908  INFO 4652 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2022-08-24 18:03:46.909  INFO 4652 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2022-08-24 18:03:46.935  INFO 4652 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-08-24 18:03:47.089  INFO 4652 --- [restartedMain] com.frame.CompanyFrameApplication        : Started CompanyFrameApplication in 7.543 seconds (JVM running for 9.4)
+2022-08-24 18:04:52.330  INFO 11284 --- [restartedMain] com.frame.CompanyFrameApplication        : Starting CompanyFrameApplication on LAPTOP-3AVH4GD2 with PID 11284 (started by HP in F:\桌面\mall-frame)
+2022-08-24 18:04:52.335  INFO 11284 --- [restartedMain] com.frame.CompanyFrameApplication        : No active profile set, falling back to default profiles: default
+2022-08-24 18:04:52.397  INFO 11284 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 18:04:52.397  INFO 11284 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 18:04:53.635  INFO 11284 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-08-24 18:04:53.637  INFO 11284 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-08-24 18:04:53.675  INFO 11284 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 25ms. Found 0 repository interfaces.
+2022-08-24 18:04:54.156  INFO 11284 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a973533a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-08-24 18:04:54.753  INFO 11284 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-08-24 18:04:54.773  INFO 11284 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-08-24 18:04:54.774  INFO 11284 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2022-08-24 18:04:54.865  INFO 11284 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-08-24 18:04:54.865  INFO 11284 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2468 ms
+2022-08-24 18:04:55.180  INFO 11284 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-08-24 18:04:55.395  INFO 11284 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-08-24 18:04:59.011  INFO 11284 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'TaskExecutorPool'
+2022-08-24 18:04:59.114  INFO 11284 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2022-08-24 18:04:59.119  INFO 11284 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2022-08-24 18:04:59.128  INFO 11284 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2022-08-24 18:04:59.169  INFO 11284 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2022-08-24 18:04:59.258  INFO 11284 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2022-08-24 18:04:59.385  INFO 11284 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-08-24 18:04:59.475  INFO 11284 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-08-24 18:04:59.803  INFO 11284 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2022-08-24 18:04:59.818  INFO 11284 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2022-08-24 18:04:59.843  INFO 11284 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2022-08-24 18:04:59.937  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminLoginUsingGET_1
+2022-08-24 18:04:59.939  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_1
+2022-08-24 18:04:59.940  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_2
+2022-08-24 18:04:59.940  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_3
+2022-08-24 18:04:59.941  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_4
+2022-08-24 18:04:59.974  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateStatusUsingGET_1
+2022-08-24 18:04:59.978  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteBatchUsingGET_1
+2022-08-24 18:05:00.004  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryCategoryByPageUsingGET_1
+2022-08-24 18:05:00.007  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: saveUsingPOST_1
+2022-08-24 18:05:00.008  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateByIdUsingPOST_1
+2022-08-24 18:05:00.019  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateMsgStatusUsingGET_1
+2022-08-24 18:05:00.026  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryUsingGET_1
+2022-08-24 18:05:00.038  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryUsingGET_2
+2022-08-24 18:05:00.074  WARN 11284 --- [restartedMain] s.d.s.w.r.p.ParameterDataTypeReader      : Trying to infer dataType java.util.List<org.springframework.web.multipart.MultipartFile>
+2022-08-24 18:05:00.098  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addProdUsingGET_1
+2022-08-24 18:05:00.112  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getProductionsUsingGET_1
+2022-08-24 18:05:00.116  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateByIdUsingPOST_2
+2022-08-24 18:05:00.139  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getProductionsUsingGET_2
+2022-08-24 18:05:00.140  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getUserInfoUsingGET_1
+2022-08-24 18:05:00.149  INFO 11284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateByIdUsingPOST_3
+2022-08-24 18:05:00.165  INFO 11284 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2022-08-24 18:05:00.165  INFO 11284 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2022-08-24 18:05:00.165  INFO 11284 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2022-08-24 18:05:00.197  INFO 11284 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-08-24 18:05:00.200  INFO 11284 --- [restartedMain] com.frame.CompanyFrameApplication        : Started CompanyFrameApplication in 8.358 seconds (JVM running for 10.533)
+2022-08-24 18:05:16.072  INFO 11284 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 18:05:16.072  INFO 11284 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-08-24 18:05:16.081  INFO 11284 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2022-08-24 18:25:58.948  INFO 1368 --- [restartedMain] com.frame.CompanyFrameApplication        : Starting CompanyFrameApplication on LAPTOP-3AVH4GD2 with PID 1368 (started by HP in F:\桌面\mall-frame)
+2022-08-24 18:25:58.978  INFO 1368 --- [restartedMain] com.frame.CompanyFrameApplication        : No active profile set, falling back to default profiles: default
+2022-08-24 18:25:59.157  INFO 1368 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-08-24 18:25:59.157  INFO 1368 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-08-24 18:26:04.654  INFO 1368 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-08-24 18:26:04.658  INFO 1368 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-08-24 18:26:04.741  INFO 1368 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52ms. Found 0 repository interfaces.
+2022-08-24 18:26:05.680  INFO 1368 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$3374c5c0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-08-24 18:26:06.977  INFO 1368 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-08-24 18:26:07.060  INFO 1368 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-08-24 18:26:07.062  INFO 1368 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2022-08-24 18:26:07.256  INFO 1368 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-08-24 18:26:07.256  INFO 1368 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 8099 ms
+2022-08-24 18:26:08.211  INFO 1368 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-08-24 18:26:09.075  INFO 1368 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-08-24 18:26:14.693  INFO 1368 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'TaskExecutorPool'
+2022-08-24 18:26:15.058  INFO 1368 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2022-08-24 18:26:15.075  INFO 1368 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2022-08-24 18:26:15.103  INFO 1368 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2022-08-24 18:26:15.241  INFO 1368 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2022-08-24 18:26:15.601  INFO 1368 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2022-08-24 18:26:15.878  INFO 1368 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-08-24 18:26:16.129  INFO 1368 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-08-24 18:26:17.716  INFO 1368 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2022-08-24 18:26:17.755  INFO 1368 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2022-08-24 18:26:17.818  INFO 1368 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2022-08-24 18:26:18.021  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminLoginUsingGET_1
+2022-08-24 18:26:18.026  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_1
+2022-08-24 18:26:18.028  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_2
+2022-08-24 18:26:18.030  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_3
+2022-08-24 18:26:18.031  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: adminPageUsingGET_4
+2022-08-24 18:26:18.110  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateStatusUsingGET_1
+2022-08-24 18:26:18.128  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteBatchUsingGET_1
+2022-08-24 18:26:18.181  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryCategoryByPageUsingGET_1
+2022-08-24 18:26:18.186  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: saveUsingPOST_1
+2022-08-24 18:26:18.188  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateByIdUsingPOST_1
+2022-08-24 18:26:18.197  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateMsgStatusUsingGET_1
+2022-08-24 18:26:18.203  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryUsingGET_1
+2022-08-24 18:26:18.225  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryUsingGET_2
+2022-08-24 18:26:18.247  WARN 1368 --- [restartedMain] s.d.s.w.r.p.ParameterDataTypeReader      : Trying to infer dataType java.util.List<org.springframework.web.multipart.MultipartFile>
+2022-08-24 18:26:18.284  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addProdUsingGET_1
+2022-08-24 18:26:18.302  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getProductionsUsingGET_1
+2022-08-24 18:26:18.309  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateByIdUsingPOST_2
+2022-08-24 18:26:18.333  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getProductionsUsingGET_2
+2022-08-24 18:26:18.336  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getUserInfoUsingGET_1
+2022-08-24 18:26:18.346  INFO 1368 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateByIdUsingPOST_3
+2022-08-24 18:26:18.366  INFO 1368 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2022-08-24 18:26:18.366  INFO 1368 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2022-08-24 18:26:18.366  INFO 1368 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2022-08-24 18:26:18.404  INFO 1368 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-08-24 18:26:18.408  INFO 1368 --- [restartedMain] com.frame.CompanyFrameApplication        : Started CompanyFrameApplication in 20.28 seconds (JVM running for 22.923)
+2022-08-24 18:27:15.238  INFO 1368 --- [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2022-08-24 18:29:47.735  INFO 1368 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-24 18:29:47.736  INFO 1368 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-08-24 18:29:47.768  INFO 1368 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 32 ms
+2022-08-24 18:29:48.879  INFO 1368 --- [http-nio-8080-exec-2] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2022-08-24 18:29:48.885  INFO 1368 --- [http-nio-8080-exec-2] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2022-08-24 18:30:58.703  INFO 1368 --- [http-nio-8080-exec-9] c.f.business.controller.UserController   : 127.0.0.1, 用户登录：LoginVo(mobile=18280894627, password=123, code=6m1v4, isSystemLogin=true)
+2022-08-24 18:30:58.754  INFO 1368 --- [http-nio-8080-exec-9] c.f.b.controller.CaptchaController       : redis 中的验证码：6m1v4 , 目标验证码为6m1v4
+2022-08-24 18:31:02.843  INFO 1368 --- [http-nio-8080-exec-9] com.frame.business.service.JwtService    : generate token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3QuaXNzdWVyOnpvdWt1biIsInNjb3JlIjo5OTk5OSwibmJmIjoxNjYxMzM3MDU5LCJnZW5kZXIiOiJGIiwicm9sZXMiOiJtYW5hZ2UsdXNlciIsIm5hbWUiOiJYTWluZyIsImlkIjoiMTUwMjkxMTM1NDQyMjU0MjMzOCIsInBpYyI6Imh0dHBzOi8vc3VzZS1tYWxsLm9zcy1jbi1jaGVuZ2R1LmFsaXl1bmNzLmNvbS8yMDIyLzA1L2Q0OTFlOWM4NzIyNDQ0MGNhMDAwNDBkYzkyMTBiNGU2LnBuZyIsImV4cCI6MTY2MTQyMzQ1OX0.-B2H5c1JhyGg4AixhDsnuhIS17S9vInsTehXmXFZHAY , 过期时间：2022-08-25 18:30:59
+2022-08-24 18:31:05.168  INFO 1368 --- [http-nio-8080-exec-7] com.frame.annotation.handle.AuthHandle   : 权限校验：类名com.frame.business.controller.SysMenuController@1e2a537e,函数名getMenu
+2022-08-24 18:31:34.815  INFO 1368 --- [http-nio-8080-exec-2] com.frame.annotation.handle.AuthHandle   : 权限校验：类名com.frame.business.controller.SysMenuController@1e2a537e,函数名getMenu

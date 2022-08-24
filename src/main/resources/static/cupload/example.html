@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./static/cupload.css" type="text/css" rel="stylesheet"/>
+    <script crossorigin="anonymous" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" src="http://lib.baomitu.com/jquery/3.6.0/jquery.js"></script>
+    <script src="./static/cupload.js"></script>
+</head>
+<body>
+    <div class="cupload" id="cupload"></div>
+    <button onclick="clickEvent()">获取图片连接</button>
+    <script>
+
+        let cupload = new Cupload('#cupload', {
+            height: '164px',
+            width: '164px',
+            exceedLimit(){
+                console.log('超过图片上限')
+            },
+            exceedFileSizeLimit(file){
+                console.log(file.name,"超过了文件大小")
+            },
+            defaultImgs: [],
+            tags:['主图图片'],
+            enableDelete: true,
+            enableResetOrder: true,
+            limit: 4,
+            maxFileSize: 200,
+            url:'http://127.0.0.1:8080/upload/batch'
+        });
+
+    </script>
+</body>
+</html>

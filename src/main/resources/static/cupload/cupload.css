@@ -1,0 +1,126 @@
+.cupload{
+    display: flex;
+    position: relative;
+}
+.upload-box{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    background-color: rgb(251, 253, 255);
+    border: 1px dashed rgb(192, 204, 218);
+    border-radius: 6px;
+    box-sizing: border-box;
+
+    width: 148px;
+    height: 100%;
+    line-height: 148px;
+}
+
+.cupload-btn{
+    position: absolute;
+    font-size: 28px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    color: rgb(140, 147, 157);
+}
+
+.cupload-input{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.pre-img-box{
+    height: 100%;
+    display: inline-block;
+    position: relative;
+    margin-right:6px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.pre-img-box:hover .cupload-order-right{
+    display: inline-block;
+}
+.pre-img-box:hover .cupload-order-left{
+    display: inline-block;
+}
+.pre-img-box:hover .cupload-del{
+    display: inline-block;
+}
+.pre-img-box:hover .cupload-masking{
+    display: inline-block;
+}
+
+.preview-img{
+    height: 100%;
+}
+.cupload-masking{
+    position: absolute;
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease 0s;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.cupload-order-right,
+.cupload-order-left{
+    position: absolute;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    bottom: 0px;
+    display: none;
+    z-index: 4;
+}
+
+.cupload-order-right{
+    right: 3px;
+    background-image: url('./img/right.png');
+}
+
+.cupload-order-left{
+    left: 3px;
+    background-image: url('./img/left.png');
+}
+
+.cupload-del{
+    position: absolute;
+    top: 3px;
+    right: 0px;
+    z-index: 4;
+    width: 24px;
+    height: 24px;
+    display: none;
+    cursor: pointer;
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-image: url('./img/delete.png');
+}
+
+.img-tag{
+    position: absolute;
+    height: 20px;
+    z-index: 6;
+    top: 0;
+    background-color: #fff;
+    border-bottom-right-radius: 6px;
+    line-height: 20px;
+    padding: 3px 6px;
+    opacity: .8;
+    font-size: 12px;
+    user-select: none;
+}
+

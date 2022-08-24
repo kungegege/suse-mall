@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> room </h1>
+    <form action="">
+        <textarea id="msgBody"></textarea><button type="button" onClick="sendMsg()">发送</button>
+    </form>
+    <hr>
+    <script>
+
+        let currentClient = prompt("请输入【当前会话】Id","");
+
+        let targetClient = prompt("请输入【目标会话】Id","");
+
+        let wsUrl = "ws://localhost:8080/webSocket" + "/" + currentClient + "/" + targetClient;
+
+        console.log("link to ", wsUrl);
+
+        const ws = new WebSocket(wsUrl);
+
+        // 连接成功建立的回调方法
+        ws.onopen = function(){
+            console.log(" start...")
+        };
+
+        // 接收到消息的回调方法
+        ws.onmessage = function(evt){
+            console.log("receive：" + evt.data);
+        };
+
+        ws.onclose = function(evt){
+            console.log("WebSocketClosed");
+        };
+
+        ws.onerror = function(evt){
+            console.log("WebSocketError! {}", evt);
+        };
+
+        function sendMsg(){
+            let msg = document.getElementById("msgBody").value;
+            if (msg && msg != '') {
+                console.log("send message to " + targetClient, msg);
+                ws.send(msg);
+            }
+            document.getElementById("msgBody").value = '';
+        }
+
+        window.onbeforeunload  = function (event) {
+            console.log("webSocket will be closed");
+            ws && ws.close();
+        };
+
+    </script>
+</body>
+</html>

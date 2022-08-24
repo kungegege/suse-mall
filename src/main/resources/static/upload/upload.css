@@ -1,0 +1,147 @@
+
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #showImgs {
+        /* overflow: hidden; */
+    }
+
+    #showImgs div {
+        float: left;
+    }
+
+    #showImgs div img {
+        width: 80px;
+        height: 80px;
+        border: 1px solid #e9e9e9;
+        margin-right: 8px;
+        cursor: pointer;
+    }
+
+    #uploadImgs div img {
+        width: 80px;
+        height: 80px;
+        border: 1px solid #e9e9e9;
+        margin-right: 8px;
+        cursor: pointer;
+    }
+
+    .imgs-bg {
+        background: url("img/bg-opacty.png");
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        padding: 40px;
+        display: none;
+        z-index: 9999;
+    }
+
+    .imgs-bg .left {
+        position: absolute;
+        top: 48%;
+        left: -51px;
+        cursor: pointer;
+    }
+
+    .imgs-bg .left img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .imgs-bg .right img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .imgs-bg .middle {
+        position: absolute;
+        left: 0px;
+        top: 5%;
+        right: 0px;
+        bottom: 0px;
+        margin: auto;
+        min-width: 100px;
+    }
+
+    .middle-img {
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    .imgs-bg .middle p {
+        font-size: 50px;
+        cursor: pointer;
+        position: absolute;
+        top: -15px;
+        right: -50px;
+        color: #fff;
+    }
+
+    .middle-img img {
+        opacity: 0;
+    }
+
+    .imgs-bg .right {
+        position: absolute;
+        top: 48%;
+        right: -50px;
+        cursor: pointer;
+    }
+
+    /***---------------------------下面是上传相关的样式***/
+    #uploadImgs {
+        height: 82px;
+    }
+
+    #uploadImgs div {
+        float: left;
+        margin-right: 12px;
+    }
+
+    .uploadImgs-add {
+        width: 80px;
+        height: 80px;
+        border: 1px dotted #7c7c7c;
+        font-size: 50px;
+        color: #7c7c7c;
+        text-align: center;
+        line-height: 80px;
+        cursor: pointer;
+    }
+
+    #uploadImgs .show-img-div2 {
+        position: relative
+    }
+
+    #uploadImgs .show-img-div2 span img {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    #uploadImgs .show-img-div2 span {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: -9px;
+        right: -2px;
+    }
+    #editImgs{
+        width: 80px;
+        height: 80px;
+        border:1px dotted #7c7c7c;
+        text-align: center;
+        line-height: 80px;
+        cursor: pointer;
+        float:left;
+    }
+    
+    
+    
+    
+    
+    

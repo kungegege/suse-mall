@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+    <link href="../../cupload/cupload.css" type="text/css" rel="stylesheet"/>
+    <script crossorigin="anonymous" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" src="http://lib.baomitu.com/jquery/3.6.0/jquery.js"></script>
+    <script src="../../cupload/cupload.js"></script>
+</head>
+<body>
+<div class="layui-form layuimini-form"  lay-filter="prodForm">
+
+    <input type="hidden" name="categoryId">
+    <div class="layui-form-item">
+        <label class="layui-form-label required">分类名称</label>
+        <div class="layui-input-inline">
+            <input type="text" name="categoryName" lay-verify="required" lay-reqtext="商品名称不能为空" placeholder="请输入商品名称" value="" class="layui-input">
+        </div>
+    </div>
+    <input type="hidden" name="prodId">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">分类权重</label>
+        <div class="layui-input-inline">
+            <input type="number" name="seq" value="" class="layui-input" required lay-verify="required">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">分类层级</label>
+        <div class="layui-input-inline">
+            <select name="grade" id="categoryLevel"  lay-reqtext="请选择分类层级"
+                    lay-filter="categoryLevel" lay-verify="selectVerify">
+                <option value=""></option>
+                <option value="1">一级分类</option>
+                <option value="2">二级分类</option>
+                <option value="3">三级分类</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item" id="parentCategory" style="display: none">
+        <label class="layui-form-label required">父分类</label>
+        <div class="layui-input-inline">
+            <input type="text" name="parentName" id="goodTypeSelect"   disabled autocomplete="off"  value="" class="layui-input" ts-selected="">
+            <input type="hidden" name="parentId" id="goodTypeSelectId" value="0" >
+        </div>
+    </div>
+
+    <div class="layui-form-item" id="categoryIcon" style="display: none">
+        <label class="layui-form-label">分类图片</label>
+        <div class="layui-input-inline">
+            <div class="cupload" id="categoryIconCupload"></div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+        </div>
+    </div>
+
+    <script id="globalOptBar"  type="text/html">
+        <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add" type="button"> 添加 </button>
+        <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="del"  type="button"> 删除 </button>
+    </script>
+
+</div>
+</div>
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+    function getUUid(){
+        function S4() {
+            return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+        }
+        return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+    }
+
+    let categoryIconCupload = new Cupload('#categoryIconCupload', {
+        height: '164px',
+        width: '164px',
+        exceedLimit(){
+            console.log('超过图片上限')
+        },
+        exceedFileSizeLimit(file){
+            console.log(file.name,"超过了文件大小")
+        },
+        defaultImgs: [],
+        tags: null,
+        enableResetOrder: false,
+        limit: 1,
+        maxFileSize: 200,
+        url:'/upload/batch'
+    });
+
+    function GetQueryString(name) {
+        let reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        let r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+
+    layui.use(['form','tableSelect','table'], ()=>{
+        let form = layui.form,
+            layer = layui.layer,
+            $ = layui.$,
+            tableSelect = layui.tableSelect,
+            table= layui.table;
+
+        function getParent(){
+            let pid = GetQueryString('pid');
+            console.log("parent category id:", pid)
+            if (!pid){
+                return ;
+            }
+            return new Promise(((resolve, reject) => {
+                $.ajax({
+                    url:'/category/query/' + pid,
+                    success: res => {
+                        if (res.code === 0) {
+                            resolve(res.data);
+                        }else{
+                            reject(res)
+                        }
+                    },
+                    fail: err => {
+                        reject(err)
+                    }
+                })
+            }));
+        }
+
+        // 自定义校验
+        form.verify({
+            selectVerify: function (value, item) {
+                let text = $(item).attr('lay-reqtext');
+                if(value===""){
+                    if (text===""){
+                        return "请选择"
+                    }
+                    return text;
+                }
+            }
+        });
+
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+            let resData = data.field;
+            resData['pic']=categoryIconCupload.getUrls()[0];
+
+            if (resData.grade==3  && !resData['pic']){
+                layer.msg('请上传分类图片',{icon: 2})
+                return;
+            }
+            console.log("bool", resData.parentId == 0 , resData.grade==3 || resData.grade==2);
+            if ((resData.grade==3 || resData.grade==2) && resData.parentId==0 ) {
+                layer.msg('请选择父分类', {icon: 2});
+                return;
+            }
+
+            $.ajax({
+                type: 'post',
+                url: '/category/save',
+                data: JSON.stringify(resData),
+                contentType: 'application/json',
+                success:res=>{
+                    if(res.code===0){
+                        layer.msg('操作成功', {icon: 1});
+                        setTimeout(()=>{
+                            let index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                            parent.layer.close(index);
+                        },1000)
+                    }else{
+                        layer.msg(res.msg, {icon: 2});
+                    }
+                }
+            })
+
+            return false;
+        });
+
+        let renderData = {
+            elem: '#goodTypeSelect',
+            // 搜索输入框的name值 默认keyword
+            searchKey: 'typeName',
+            // 表格的唯一建值，非常重要，影响到选中状态 必填
+            checkedKey: 'categoryId',
+            // 搜索输入框的提示文字 默认关键词搜索
+            searchPlaceholder: '请输入商品类型',
+            //定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
+            table: {
+                url: '/category/all',
+                // 开启分页
+                page: true,
+                request:{
+                    //页码的参数名称，默认：page
+                    pageName: 'page',
+                    //每页数据量的参数名，默认：limit
+                    limitName: 'limit'
+                },
+                parseData: function (res) {
+                    return {
+                        "code": res.code,
+                        "msg": res.msg,
+                        "count": res.data.total,
+                        "data": res.data.records
+                    };
+                },
+                cols: [[
+                    { type: 'radio' },
+                    { field: 'categoryId', title: 'ID', width: 150 },
+                    { field: 'categoryName', title: '分类名称', width: 300 }
+                ]]
+            },
+            done: function (elem, data) {
+                let NEWJSON = [],ids=[]
+                layui.each(data.data, function (index, item) {
+                    NEWJSON.push(item.categoryName)
+                    ids.push(item.categoryId)
+                })
+                $("#goodTypeSelectId").val(ids.join(","))
+                elem.val(NEWJSON.join(","))
+            }
+        }
+        tableSelect.render(renderData)
+
+        // 工具条事件
+        table.on('toolbar(barEvent)', function(obj) {
+            let selectedData = table.checkStatus(obj.config.id).data;
+            let originalData = table.cache.propertiesTable;
+            if (obj.event === 'del') {
+                console.log("删除:", selectedData)
+                // 删除节点 ids
+                let ids = selectedData.map(it=>it.id);
+                console.log('del ids', ids)
+                console.log('originalData', originalData)
+
+                let newData = originalData.filter(it=>ids.indexOf(it.id)===-1);
+
+                table.reload('propertiesTable',{
+                    data: newData
+                })
+            } else if (obj.event === 'add') {
+                let data = originalData
+                console.log('data： ',data)
+                data.push({id: getUUid(),key:'-',value:'-'});
+                table.reload('propertiesTable', {
+                    data: data
+                })
+            }
+        });
+
+        // select - onchange事件
+        form.on('select(categoryLevel)',  (ele)=> {
+            let value = parseInt(ele.value);
+            $('#goodTypeSelect').val("");
+            $('#goodTypeSelectId').val("0");
+            categoryIconCupload.reset();
+            renderData.table.url = '/category/level/' + value;
+            if (value === 2 || value === 3) {
+                // 二、三级分类
+                $("#parentCategory").show();
+                if (value === 3) {
+                    $("#categoryIcon").show();
+                }else{
+                    $("#categoryIcon").hide();
+                }
+            }else{
+                $("#parentCategory").hide();
+            }
+        });
+
+        // init data
+        let res = getParent();
+
+        if (res) {
+            res.then(r => {
+                console.log("init parent category data", r);
+                let value = r.grade + 1;
+                if (value === 2 || value === 3) {
+                    // 二、三级分类
+                    $("#parentCategory").show();
+                    if (value === 3) {
+                        $("#categoryIcon").show();
+                    } else {
+                        $("#categoryIcon").hide();
+                    }
+                } else {
+                    $("#parentCategory").hide();
+                }
+                $("#categoryLevel").attr('disabled', true);
+                $("#goodTypeSelect").attr('readonly', true);
+                layui.form.val('prodForm', {grade: value, parentId: r.categoryId, parentName: r.categoryName});
+            });
+        } else {
+            // 没有指定pid
+            $("#categoryLevel").attr('disabled', false);
+            $("#goodTypeSelect").attr('readonly', false);
+        }
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+    <link href="../../cupload/cupload.css" type="text/css" rel="stylesheet"/>
+    <script crossorigin="anonymous" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" src="http://lib.baomitu.com/jquery/3.6.0/jquery.js"></script>
+    <script src="../../cupload/cupload.js"></script>
+</head>
+<body>
+<div class="layui-form layuimini-form"  lay-filter="prodForm">
+    <div class="layui-form-item">
+        <label class="layui-form-label required">商品名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="prodName" lay-verify="required" lay-reqtext="商品名称不能为空" placeholder="请输入商品名称" value="" class="layui-input">
+        </div>
+    </div>
+    <input type="hidden" name="prodId">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">商品状态</label>
+        <div class="layui-input-block">
+            <input type="radio" name="status" value="1"  title="上架">
+            <input type="radio" name="status" value="0"  title="下架">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label ">商品简介</label>
+        <div class="layui-input-block">
+            <input type="text" name="brief"  placeholder="商品简介" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required" >商品价格</label>
+        <div class="layui-input-block">
+            <input type="number" name="price" lay-verify="required" placeholder="请输入商品价格" value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">商品分类</label>
+        <div class="layui-input-block">
+            <input type="text" name="categoryName" id="goodTypeSelect" autocomplete="off"  value="" class="layui-input" ts-selected="">
+            <input type="hidden" name="categoryId"  id="goodTypeSelectId" value="" >
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">商品属性</label>
+        <div class="layui-input-block">
+            <table id="propertiesTable" lay-filter="barEvent"></table>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">轮播图片</label>
+        <div class="layui-input-block">
+            <div class="cupload" id="cupload_lb"></div>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text" >
+        <label class="layui-form-label">详细图片</label>
+        <div class="cupload" id="cupload_detail"></div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+        </div>
+    </div>
+
+    <script id="globalOptBar"  type="text/html">
+        <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add" type="button"> 添加 </button>
+        <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="del"  type="button"> 删除 </button>
+    </script>
+
+</div>
+</div>
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+
+    let cuploadLB = undefined;
+
+    let cuploadDetail = undefined;
+
+    function getUUid(){
+        function S4() {
+            return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+        }
+        return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+    }
+
+    function GetQueryString(name) {
+        let reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        let r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+
+    let getInitData  = function (){
+        let id = GetQueryString('id');
+        if(id){
+            return new Promise((r,j)=>{
+                $.ajax({
+                    type: 'get',
+                    url: 'http://127.0.0.1:8080/prod/query/' + id,
+                    success(res){
+                        console.log(res)
+                        let {code, data} = res;
+                        if(code===0){
+                            r(data)
+                        }else{
+                            j(res);
+                        }
+                    }
+                })
+            })
+        }
+    }
+
+    let initData = getInitData();
+
+    layui.use(['form','tableSelect','table'], ()=>{
+        let form = layui.form,
+            layer = layui.layer,
+            $ = layui.$,
+            tableSelect = layui.tableSelect,
+            table= layui.table;
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+            let resData = data.field;
+            resData['pic']=cuploadLB.getUrls().join(",")
+            resData['imgs']=cuploadDetail.getUrls().join(",")
+            let propertiesData = table.cache.propertiesTable, propertiesStr=[];
+            for (let i = 0; i < propertiesData.length; i++) {
+                propertiesStr.push( JSON.stringify(propertiesData[i]));
+            }
+            resData['attr']=propertiesStr.join('#')
+
+            $.ajax({
+                type: 'post',
+                url: 'http://127.0.0.1:8080/prod/update/id',
+                data: JSON.stringify(resData),
+                contentType: 'application/json',
+                success:res=>{
+                    if(res.code===0){
+                        layer.msg('操作成功', {icon: 1});
+                        setTimeout(()=>{
+                            let index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                            parent.layer.close(index);
+                        },1000)
+                    }else{
+                        layer.msg(res.msg, {icon: 2});
+                    }
+                }
+            })
+
+            return false;
+        });
+
+        tableSelect.render({
+            elem: '#goodTypeSelect',
+            // 搜索输入框的name值 默认keyword
+            searchKey: 'typeName',
+            // 表格的唯一建值，非常重要，影响到选中状态 必填
+            checkedKey: 'categoryId',
+            // 搜索输入框的提示文字 默认关键词搜索
+            searchPlaceholder: '请输入商品类型',
+            //定义表格参数，与LAYUI的TABLE模块一致，只是无需再定义表格elem
+            table: {
+                url: 'http://127.0.0.1:8080/category/all',
+                // 开启分页
+                page: true,
+                request:{
+                    //页码的参数名称，默认：page
+                    pageName: 'page',
+                    //每页数据量的参数名，默认：limit
+                    limitName: 'limit'
+                },
+                parseData: function (res) {
+                    return {
+                        "code": res.code,
+                        "msg": res.msg,
+                        "count": res.data.total,
+                        "data": res.data.records
+                    };
+                },
+                cols: [[
+                    { type: 'radio' },
+                    { field: 'categoryId', title: 'ID', width: 150 },
+                    { field: 'categoryName', title: '分类名称', width: 300 }
+                ]]
+            },
+            done: function (elem, data) {
+                let NEWJSON = [],ids=[]
+                layui.each(data.data, function (index, item) {
+                    NEWJSON.push(item.categoryName)
+                    ids.push(item.categoryId)
+                })
+                $("#goodTypeSelectId").val(ids.join(","))
+                elem.val(NEWJSON.join(","))
+            }
+        })
+
+        let tableData = [];
+        window.propertyTableData= tableData
+
+        // 属性表格
+        let propertyTable = table.render({
+            elem:'#propertiesTable',
+            toolbar: '#globalOptBar',
+            cols: [[
+                {checkbox: true},
+                {field: 'id', title:'ID', hide:true},
+                {field: 'key', title:'属性名', edit: true},
+                {field: 'value', title:'属性值', edit: true},
+                {fixed: 'right', width:150, align:'center', toolbar: '#optBar'},
+            ]],
+            data:tableData,
+        })
+
+        // 工具条事件
+        table.on('toolbar(barEvent)', function(obj) {
+            let selectedData = table.checkStatus(obj.config.id).data;
+            let originalData = table.cache.propertiesTable;
+            if (obj.event === 'del') {
+                console.log("删除:", selectedData)
+                // 删除节点 ids
+                let ids = selectedData.map(it=>it.id);
+                console.log('del ids', ids)
+                console.log('originalData', originalData)
+
+                let newData = originalData.filter(it=>ids.indexOf(it.id)===-1);
+
+                table.reload('propertiesTable',{
+                    data: newData
+                })
+            } else if (obj.event === 'add') {
+                let data = originalData
+                console.log('data： ',data)
+                data.push({id: getUUid(),key:'-',value:'-'});
+                table.reload('propertiesTable', {
+                    data: data
+                })
+            }
+        });
+
+        // 数据渲染
+        initData.then((data)=>{
+            console.log('prod data', data);
+            //初始化表单
+            layui.form.val('prodForm', data);
+            if (!data.categoryName){
+                $.ajax({
+                    type: 'get',
+                    url:'/category/query/'+data.categoryId,
+                    success(res){
+                        let data = res.data;
+                        $('input[name=categoryName]').val(data.categoryName)
+                    }
+                })
+            }
+
+            // 初始化属性表格
+            if(data.attr && data.attr.length>0){
+                let attr = [], attrStr=data.attr.split('#');
+                for(let i=0;i<attrStr.length;i++){
+                    attr.push(JSON.parse(attrStr[i]));
+                }
+                table.reload('propertiesTable', {
+                    data: attr
+                })
+            }
+
+            cuploadDetail = new Cupload('#cupload_detail', {
+                height: '164px',
+                width: '164px',
+                exceedLimit: ()=>{
+                    layer.msg("超过了图片上限")
+                },
+                exceedFileSizeLimit: (file, limit)=>{
+                    layer.msg(`${file.name} 太大了, 最大支持${limit}kb`)
+                },
+                defaultImgs: data.imgs.split(','),
+                tags: null,
+                enableDelete: true,
+                enableResetOrder: true,
+                limit: 14,
+                maxFileSize: 1024,
+                url:'/upload/batch'
+            });
+
+            cuploadLB = new Cupload('#cupload_lb', {
+                height: '164px',
+                width: '164px',
+                exceedFileSizeLimit: (file, limit)=>{
+                    layer.msg(`${file.name} 太大了, 最大支持${limit}kb`)
+                },
+                exceedFileSizeLimit: ()=>{
+                    console.log(file.name,"超过了文件大小")
+                    layer.msg(file.name+'太大了')
+                },
+                defaultImgs: data.pic.split(','),
+                tags:['商品封面'],
+                enableDelete: true,
+                enableResetOrder: true,
+                limit: 4,
+                maxFileSize: 1024,
+                url:'/upload/batch'
+            });
+
+            let propertyData = []
+            let strData = data.attr.split(',');
+            for (let i = 0; i < strData.length; i++) {
+                propertyData.push(JSON.parse(strData[i]))
+            }
+
+            table.reload('propertiesTable', {
+                data: propertyData
+            })
+        })
+
+    });
+</script>
+</body>
+</html>
